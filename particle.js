@@ -1,4 +1,3 @@
-
 function Particle() {
     this.pos = createVector(random(width), height / 2 - 20 + random(40));
     this.vel = createVector(0, 0);
@@ -27,15 +26,23 @@ function Particle() {
         this.acc.add(force);
     }
 
-    this.show = function (c) {
-        // if (r > 150) console.log(r, g, b)
-        stroke(255, 255 - c, 255 - c, 255);
-        // stroke(this.h, 255, 255);
-        // this.h = this.h + 1;
-        // if (this.h > 255) {
-        //     this.h = 200;
-        // }
-        strokeWeight(0.5);
+    this.show = function (emotion) {
+        // console.log(emotion)
+        if (emotion === undefined || emotion === null) {
+            stroke(this.h, 255, 255);
+        } else if (emotion === 'happy') {
+            stroke(139, 255, 255, 255)
+        } else if (emotion === 'surprised') {
+            stroke(122, 255, 255, 214)
+        } else {
+            stroke(174, 255, 255, 255)
+        }
+
+        this.h = this.h + 1;
+        if (this.h > 255) {
+            this.h = 0;
+        }
+        strokeWeight(1);
         line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
         this.updatePrev();
     }

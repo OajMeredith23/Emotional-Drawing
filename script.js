@@ -1,4 +1,7 @@
 const video = document.getElementById('video')
+const happyText = document.getElementById('happy')
+const surprisedText = document.getElementById('surprised')
+const neutralText = document.getElementById('neutral')
 
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
@@ -31,25 +34,25 @@ video.addEventListener('play', () => {
     const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
     const resizedDetections = faceapi.resizeResults(detections, displaySize)
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-    // faceapi.draw.drawDetections(canvas, resizedDetections)
-    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+    faceapi.draw.drawDetections(canvas, resizedDetections)
+    // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
     faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
 
 
     // let expressions 
-    expressions = detections[0].expressions
+    // console.log(Object.keys(expressions).reduce((a, b) => expressions[a] > expressions[b] ? a : b) || null)
+    if (detections[0] === undefined) {
+      console.log("Nothing there")
+      emotion = null
+    } else {
+      expressions = detections[0].expressions
+      happyText.innerText = Math.round(expressions.happy * 100) / 100
+      neutralText.innerText = Math.round(expressions.neutral * 100) / 100
+      surprisedText.innerText = Math.round(expressions.surprised * 100) / 100
+      emotion = Object.keys(expressions).reduce((a, b) => expressions[a] > expressions[b] ? a : b), neutral = expressions.neutral;
+    }
 
-    return emotion = Object.keys(expressions).reduce((a, b) => expressions[a] > expressions[b] ? a : b);
-
-    // if (expressions) {
-    //   return emotions = {
-    //     happy: expressions.happy,
-    //     sad: expressions.sad,
-    //     angry: expressions.angry,
-    //     neutral: expressions.neutral,
-    //   }
-    // }
-
-  }, 500)
+    return emotion
+  }, 1000)
 
 })
