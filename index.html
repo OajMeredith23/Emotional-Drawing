@@ -4,43 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <title>Expressional Drawing</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
   <script defer src="face-api.min.js"></script>
   <script defer src="script.js"></script>
+  <script defer src="particle.js"></script>
+  <script defer src="sketch.js"></script>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* body {
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #video{
-      /* width: 100vw;
-      height: 100vh; */
-    }
-    canvas {
-      position: absolute;
-    } */
-  </style>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet"> 
 </head>
 <body>
-  <main class="container">
-      <h1 class="title">Emotional Drawing</h1>
+  <main>
+    <section class="container">
+        <h1 class="title">Expressional Drawing</h1>
 
-    <div class="video">
-      <video id="video" width="400" height="225" autoplay muted></video>
-    </div>
+      <div class="video">
+        <video id="video" width="400" height="225" autoplay muted></video>
+      </div>
 
-    <div class="sketch" id="p5Sketch">
+      <ul class="emotion-text">
+        <li >Neutral: <span id="neutral">0</span></li>
+        <li >Happy: <span id="happy">0</span></li>
+        <li >Surprised: <span id="surprised">0</span></li>
+        <!-- <li >Neutral: <span id="neutral"></span></li>
+        <li >Neutral: <span id="neutral"></span></li>
+        <li >Neutral: <span id="neutral"></span></li> -->
+      </ul>
 
-    </div>
+      <div class="sketch" id="p5Sketch">
 
-  </main>
+      </div>
+
+    </section>
+</main>
+
 </body>
 </html>
