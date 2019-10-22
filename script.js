@@ -39,16 +39,10 @@ video.addEventListener('play', () => {
     faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
 
 
-    // let expressions 
-    // console.log(Object.keys(expressions).reduce((a, b) => expressions[a] > expressions[b] ? a : b) || null)
     if (detections[0] === undefined) {
-      console.log("Nothing there")
       emotion = null
     } else {
       expressions = detections[0].expressions
-      happyText.innerText = Math.round(expressions.happy * 100) / 100
-      neutralText.innerText = Math.round(expressions.neutral * 100) / 100
-      surprisedText.innerText = Math.round(expressions.surprised * 100) / 100
       emotion = Object.keys(expressions).reduce((a, b) => expressions[a] > expressions[b] ? a : b), neutral = expressions.neutral;
     }
 

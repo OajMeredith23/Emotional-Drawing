@@ -32,7 +32,6 @@ function setup() {
     }
     background(51);
 
-    ellipse(width / 2, height / 2, 10, 10)
 }
 
 
