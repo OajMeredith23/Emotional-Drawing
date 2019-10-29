@@ -19,34 +19,44 @@ function startVideo() {
     })
 }
 
-let expressions, emotion;
 const videoSection = document.querySelector('.video')
 
 video.addEventListener('play', () => {
+  let expressions, expression;
 
   const canvas = faceapi.createCanvasFromMedia(video)
   videoSection.append(canvas)
 
   const displaySize = { width: video.width, height: video.height }
   faceapi.matchDimensions(canvas, displaySize)
+
   setInterval(async () => {
-    // expressions = []
+    let prevExpression = expression
+
     const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
     const resizedDetections = faceapi.resizeResults(detections, displaySize)
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-    faceapi.draw.drawDetections(canvas, resizedDetections)
-    // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+
+    // faceapi.draw.drawDetections(canvas, resizedDetections)
+    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
     faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
 
 
     if (detections[0] === undefined) {
-      emotion = null
+      expression = null
     } else {
       expressions = detections[0].expressions
-      emotion = Object.keys(expressions).reduce((a, b) => expressions[a] > expressions[b] ? a : b), neutral = expressions.neutral;
+      expression = Object.keys(expressions).reduce((a, b) => expressions[a] > expressions[b] ? a : b), neutral = expressions.neutral;
     }
 
-    return emotion
+    if (prevExpression !== expression) {
+      createStory(expression)
+    }
+
   }, 1000)
 
 })
+
+
+// const words = words
+
