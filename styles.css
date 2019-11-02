@@ -1,7 +1,7 @@
 body, html {
   background: #f9f9f9;
   font-size: 100%;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Special Elite', sans-serif;
 }
 
 * {
@@ -15,17 +15,48 @@ body, html {
   position: relative;
   width: 100%;
   min-height: 100vh;
+  max-width: 960px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #video {
-  opacity: 0.4;
+  opacity: 0.8;
 }
 
-.video, canvas {
+.video {
+  margin-right: 1em;
+  min-width: 400px;
+  min-height: 225px;
+  padding: 0;
+  position: relative;
+}
+
+.video video, .video canvas {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+}
+
+.story-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=styles.css.map */
