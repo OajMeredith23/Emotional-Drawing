@@ -1,59 +1,254 @@
+// const storyStructure = ['pronoun', 'verb', 'the', 'adjective', 'in', 'pronoun', 'noun', 'and', 'verb', 'adjective', '.', 'pronoun', 'verb', 'to', 'the', 'noun', 'and', 'verb', 'on', 'her', 'adjective', 'noun', '.', 'pronoun', 'had', 'adverb', 'adjective', 'adjective', 'place', 'with', 'its', 'adjective', 'adjective', 'noun', '.', 'It', 'was', 'a', 'place', 'that', 'verb', 'pronoun', 'noun', 'to', 'feel', 'adjective', '.']
+// She looked at the cursed piano...
+// const storyStructure = ['pronoun', 'verb', 'the', 'adjective', 'noun']
+
 const words = {
-    "adjective": {
-        "neutral": ["Calm", "Calming", "Expectant", "Innocent", "Lickety-split", "Lighthearted", "Determined", "Devoted", "Ethereal", "Gentle", "Glacial", "Halting", "Haunting", "Hidden", "High-spirited", "Honor", "Hopeful", "Walking", "Wild", "Witty", "Wondering",],
+    /* Pronoun */1: {
+        "pronoun": true,
+        "she": ["She"],
+        "he": ["He"],
+        "they": ["They"],
+    },
+    /* Verb */2: {
+        "neutral": ['looked at'],
+        "happy": ['dreamt about'],
+        "angry": ['thought about'],
+        "sad": ['walked towards'],
+        "disgusted": ['turned her nose up to the'],
+        "surprised": ['screamed at the']
+    },
+    /* Fill */ 3: {
+        "fill": true,
+        "word": "the"
+    },
+    /*Adjective */ 4: {
+        "neutral": ['uninspiring'],
+        "happy": ['gleaming', 'charming'],
+        "angry": ['archaic', 'frustrating', 'devastating'],
+        "sad": ['dull', 'overcoming'],
+        "disgusted": ['vile', 'gross'],
+        "surprised": ['overwhelming', 'staggering']
+    },
+    /* Noun */ 5: {
+        "neutral": ['advertisement', 'tabloid'],
+        "happy": ['bagel', 'rabbit'],
+        "angry": ['cabbage'],
+        "sad": ['koala'],
+        "disgusted": ['grub'],
+        "surprised": ['alligator']
+    },
+    /* fill */ 6: {
+        "fill": true,
+        "word": 'in'
+    },
+    /* Pronoun */7: {
+        "pronoun": true,
+        "she": ["her"],
+        "he": ["his"],
+        "they": ["their"],
+    },
+    /* Noun to hold something */ 8: {
+        "neutral": ['hands'],
+        "happy": ['gucci handbag'],
+        "angry": ['cigarette box'],
+        "sad": ['slightly grimy bowl'],
+        "disgusted": ['5p Tescos bag'],
+        "surprised": ['salad bowl']
+    },
+    /* fill */ 9: {
+        "fill": true,
+        "word": 'and'
+    },
+    /*Adjective - feeling, end sentence */ 10: {
+        "neutral": ['felt underwhelmed. </br>'],
+        "happy": ['thought, hot damn! </br>'],
+        "angry": ['was furious. </br>'],
+        "sad": ["didn't really care. </br>"],
+        "disgusted": ['was revolted. </br>'],
+        "surprised": ['felt rather flushed. </br>']
+    },
+    // END OF FIRST SENTENCE
+    /* Pronoun */11: {
+        "pronoun": true,
+        "she": ["She"],
+        "he": ["He"],
+        "they": ["They"],
+    },
+    /* Verb */12: {
+        "neutral": ['walked over to', 'felt unconcerned by'],
+        "happy": ['dreamt about'],
+        "angry": ['protested the'],
+        "sad": ['curled up against', 'felt dissapointed by'],
+        "disgusted": ['felt disturbed by'],
+        "surprised": ['explored the']
+    },
+    /* fill */ 13: {
+        "fill": true,
+        "word": 'the'
+    },
+     /*Adjective */ 14: {
+        "neutral": ['uninteresting', 'nonaligned'],
+        "happy": ['amatory', 'astonishing'],
+        "angry": ['egregious', 'bitter', 'distressed'],
+        "sad": ['lachrymose', 'doleful', 'sorrowful'],
+        "disgusted": ['feckless', 'troubled', 'dismal'],
+        "surprised": ['fecund', 'bewildering', 'confounding']
+    },
+     /* Noun */ 15: {
+        "neutral": ['street'],
+        "happy": ['sunlight', 'rainbow'],
+        "angry": ['volcano'],
+        "sad": ['waterfall'],
+        "disgusted": ['swamp'],
+        "surprised": ['socks']
+    },
+    /* fill */ 16: {
+        "fill": true,
+        "word": 'and'
+    },
+     /* Verb */17: {
+        "neutral": ['considered'],
+        "happy": ['reflected on'],
+        "angry": ['snarled at'],
+        "sad": ['dismissed'],
+        "disgusted": ['glared at'],
+        "surprised": ['reverberated through']
+    },
+     /* Pronoun */18: {
+        "pronoun": true,
+        "she": ["her"],
+        "he": ["his"],
+        "they": ["their"],
+    },
+    /*Adjective */ 19: {
+        "neutral": ['equanimous'],
+        "happy": ['cerulean'],
+        "angry": ['hubristic'],
+        "sad": ['dowdy'],
+        "disgusted": ['feckless'],
+        "surprised": ['efficacious']
+    },
+     /* Noun */ 20: {
+        "neutral": ['surroundings.'],
+        "happy": ['amusement.'],
+        "angry": ['aftermath.'],
+        "sad": ['ink.'],
+        "disgusted": ['jellyfish.'],
+        "surprised": ['goose.']
+    },
+     // END OF SECOND SENTENCE
+    /* Pronoun */21: {
+        "pronoun": true,
+        "she": ["She"],
+        "he": ["He"],
+        "they": ["They"],
+    },
+    /* fill */ 22: {
+        "fill": true,
+        "word": 'had'
+    },
+    /* Adverb */  23: {
+        "neutral": ['always'],
+        "happy": ['perpetually'],
+        "angry": ['without exception'],
+        "sad": ['never'],
+        "disgusted": ['invariably'],
+        "surprised": ['unceasingly']
+    },
+    /* Verb */24: {
+        "neutral": ['been ok with', 'unbiased about'],
+        "happy": ['adored', 'cherished'],
+        "angry": ['felt engulfed by'],
+        "sad": ['dismissed'],
+        "disgusted": ['felt revolted by'],
+        "surprised": ['weaved through', 'idolized']
+    },
+     /*Adjective */ 25: {
+        "neutral": ['inactive'],
+        "happy": ['risible'],
+        "angry": ['pernicious'],
+        "sad": ['turbulent', 'somber', 'wistful'],
+        "disgusted": ['obtuse'],
+        "surprised": ['pervasive']
+    },
+    /* Place */ 26: {
 
-        "happy": ["Accomplished", "Appreciated", "Active", "Adored", "Adulated", "Adventurous", "Affectionate", "Amused", "Amusing", "Awestruck", "Beaming", "Blissful", "Bouncy", "Breathtaking", "Bright", "Brilliant", "Bubbling", "Capricious", "Celestial", "Charming", "Cheerful", "Cherished", "Chilled", "Comical", "Companionable", "Confident", "Contentment", "Courage", "Crazy", "Creepy", "Dancing", "Dazzling", "Delicate", "Delightful", "Elated", "Elegant", "Enchanted", "Energetic", "Enthusiastic", "Expressive", "Exuberant", "Freakin' awesome", "Frenetic", "Fantastical", "Favorable", "Gladness", "Gleaming", "Gleeful", "Gorgeous", "Graceful", "Grateful", "Funny", "Furry", "Galloping", "Happy", "Heavenly", "Pretty", "Prideful", "Princesslike", "Summery", "Velvety", "Zestful", "Inspired", "Illuminated", "Lovely", "Lulling", "Luminescent", "Lush", "Luxurious",],
-
-        "angry": ["Animal-like", "Abrupt", "Arrogant", "Authoritative", "Boisterous", "Booming", "Dominant", "Dramatic", "Feral", "Feverish", "Fiery", "Laughable", "March-like", "Prickly", "Spidery", "Spooky", "Thrilling", "Trembling", "Triumphant", "Vigorous", "Virile", "Immense", "Imperious", "Commanding", "Maniacal",],
-
-        "suprised": ["Astonished", "Audacious", "Bewildered", "Dumbstruck", "Ebullient", "Frenzied", "Giddy", "Hopping", "Joking", "Joyful", "Jubilant", "Lively", "Lofty", "Mischievous", "Playful", "Gaping",],
-
-        "disgusted": ["Hushed", "Hypnotic", "Faint", "Misty", "Febrile", "Folksy", "Fond", "Jagged", "Resolute", "Sarcastic",],
-
-        "sad": ["Frosted", "Archaic", "Ardent", "Bewitching", "Demented", "Desirable", "Drawn out", "Dripping", "Floating", "Impudent", "Mysterious", "Mystical", "Mythological", "Nebulous", "Nostalgic", "Overstated", "Paganish", "Exaggerated", "Exalted", "Languid", "Robust",],
-
+        "neutral": ['London'],
+        "happy": ['San Francisco'],
+        "angry": ['avalanche'],
+        "sad": ['bowling alley'],
+        "disgusted": ['obtuse'],
+        "surprised": ['mountains']
+    },
+    /* fill */ 27: {
+        "fill": true,
+        "word": 'with its'
+    },
+    /*Adjective */ 28: {
+        "neutral": ['average,'],
+        "happy": ['risible,'],
+        "angry": ['strident,'],
+        "sad": ['querulous,'],
+        "disgusted": ['withering,'],
+        "surprised": ['verdant,']
+    },
+    /*Adjective */ 29: {
+        "neutral": ['quite ok'],
+        "happy": ['arcadian'],
+        "angry": ['baleful'],
+        "sad": ['belligerent'],
+        "disgusted": ['dilatory'],
+        "surprised": ['adriot']
+    },
+     /* Noun */ 30: {
+        "neutral": ['corners.'],
+        "happy": ['jewel.'],
+        "angry": ['oil.'],
+        "sad": ['nooks.'],
+        "disgusted": ['msucle.'],
+        "surprised": ['legs.']
+    },
+    /* END OF THIRD SENTENCE /*
+    /* fill */ 31: {
+        "fill": true,
+        "word": 'It was a place that'
+    },
+    /* Verb */32: {
+        "neutral": ['resolved'],
+        "happy": ['encouraged'],
+        "angry": ['wrecked'],
+        "sad": ['veiled'],
+        "disgusted": ['transfigured'],
+        "surprised": ['yanked']
+    },
+    /* Pronoun */33: {
+        "pronoun": true,
+        "she": ["her"],
+        "he": ["his"],
+        "they": ["their"],
+    },
+     /* Noun */ 34: {
+        "neutral": ['tendency'],
+        "happy": ['proclivity'],
+        "angry": ['slant'],
+        "sad": ['temperament'],
+        "disgusted": ['weakness'],
+        "surprised": ['readiness']
+    },
+    /* fill */ 35: {
+        "fill": true,
+        "word": 'to feel'
+    },
+    /* adjective */36: {
+        "neutral": ['neutral.'],
+        "happy": ['fulsome.'],
+        "angry": ['intransigent.'],
+        "sad": ['judicious.'],
+        "disgusted": ['insolent.'],
+        "surprised": ['yanked.']
     },
 
-    "noun": {
-        "neutral": ["account", "acrylic", "agenda", "agreement", "actor", "actress", "donald", "donald", "adapter", "anime", "ankle", "apartment", "cabbage", "cabinet", "cable", "cactus", "cafe", "cake", "raft", "rail", "railway", "rain", "rainbow", "raincoat",],
 
-        "happy": ["accordion", "airbus", "airplane", "airport", "airship", "bra", "donald", "donald", "bread", "bagel", "bagpipe", "bail", "bait", "baker", "bakery", "calculator", "calculus", "calendar", "calf", "grandfather", "grandmother", "grandson", "grape", "keyboard", "keyboarding", "kick", "kidney", "kilogram", "kilometer",],
-
-        "angry": ["alarm", "albatross", "alcohol", "advertisement", "brian", "afterthought", "anatomy", "baboon", "ball", "balloon", "bamboo", "banana", "hip", "hippopotamus", "history", "hobbies", "hockey", "hoe", "kohlrabi", "korean", "laborer", "lace",],
-
-        "surprised": ["amusement", "air", "donald", "aluminium", "antarctica", "anteater", "antelope", "anthony", "can", "canada", "donald", "donald", "canadian", "cancer", "silica", "silk", "silver", "sing", "singer", "single", "sink",],
-
-        "disgusted": ["animal", "brain", "broccoli", "alphabet", "ambulance", "apparel", "babies", "balance", "balinese",],
-
-        "sad": ["aftershave", "boat", "brace", "british", "alibi", "alligator", "america", "ant", "apple", "donald", "donald", "donald", "backbone", "bacon", "badge", "badger", "bag", "camel", "camera", "camp", "employer", "encyclopedia", "end", "enemy", "spruce", "spy", "square", "squash", "squid", "squirrel",],
-
-        // "the rest": ["expansion", "experience", "expert", "explanation", "eye", "eyebrow", "eyelash", "eyeliner", "face", "facilities", "fact", "factory", "fahrenheit", "fairies", "fall", "family", "fan", "fang", "farm", "farmer", "fat", "father", "father-in-law", "faucet", "fear", "feast", "feather", "feature", "february", "fedelini", "feedback", "feeling", "feet", "felony", "female", "fender", "ferry", "ferryboat", "fertilizer", "fiber", "fiberglass", "fibre", "fiction", "field", "fifth", "fight", "fighter", "file", "find", "fine", "finger", "fir", "fire", "fired", "fireman", "fireplace", "firewall", "fish", "fisherman", "flag", "flame", "flare", "flat", "flavor", "flax", "flesh", "flight", "flock", "flood", "floor", "flower", "flugelhorn", "flute", "fly", "foam", "fog", "fold", "font", "food", "foot", "football", "footnote", "force", "forecast", "forehead", "forest", "forgery", "fork", "form", "format", "fortnight", "foundation", "fountain", "fowl", "fox", "foxglove", "fragrance", "frame", "france", "freckle", "freeze", "freezer", "freighter", "gold", "goldfish", "golf", "gondola", "gong", "good-bye", "goose", "gore-tex", "gorilla", "gosling", "government", "governor", "grade", "grain", "gram", "granddaughter", "graphic", "grass", "grasshopper", "gray", "grease", "great-grandfather", "great-grandmother", "greece", "greek", "green", "grenade", "heaven", "hedge", "height", "helen", "helicopter", "helium", "hell", "helmet", "help", "hemp", "hen", "heron", "herring", "hexagon", "hill", "himalayan", "hole", "holiday", "home", "honey", "hood", "hook", "hope", "horn", "horse", "hose", "hospital", "hot", "hour", "hourglass", "house", "hovercraft", "hub", "hubcap", "humidity", "humor", "hurricane", "hyacinth", "hydrant", "hydrofoil", "hydrogen", "hyena", "hygienic", "ice", "icebreaker", "icicle", "icon", "idea", "ikebana", "illegal", "imprisonment", "improvement", "impulse", "inch", "income", "increase", "index", "india", "indonesia", "industry", "ink", "innocent", "input", "insect", "instruction", "instrument", "insulation", "insurance", "interactive", "interest", "internet", "interviewer", "intestine", "invention", "inventory", "invoice", "iran", "iraq", "iris", "iron", "island", "israel", "italian", "italy", "jacket", "jaguar", "jail", "jam", "james", "january", "japan", "japanese", "jar", "jasmine", "jason", "jaw", "jeans", "jeep", "jeff", "jelly", "jellyfish", "jennifer", "jet", "jewel", "jogging", "john", "join", "joke", "joseph", "journey", "judge", "judo", "juice", "july", "jumbo", "jump", "jumper", "june", "jury", "justice", "jute", "kale", "kamikaze", "kangaroo", "karate", "karen", "kayak", "kendo", "kenneth", "kenya", "ketchup", "kettle", "kettledrum", "kevin", "key", "kimberly", "kiss", "kitchen", "kite", "kitten", "kitty", "knee", "knickers", "knife", "knight", "knot", "knowledge", "ladybug", "lake", "lamb", "lamp", "lan", "land", "landmine", "language", "larch", "lasagna", "latency", "latex", "lathe", "laugh", "laundry", "laura", "law", "lawyer", "layer", "lead", "leaf", "learning", "leather", "leek", "leg", "legal", "lemonade", "lentil", "leo", "leopard", "letter", "lettuce", "level", "libra", "library", "license", "lier", "lift", "light", "lightning", "lilac", "lily", "limit", "linda", "line", "linen", "link", "lion", "lip", "lipstick", "liquid", "liquor", "lisa", "list", "literature", "litter", "liver", "lizard", "llama", "loaf", "loan", "lobster", "lock", "locket", "locust", "look", "loss", "lotion", "love", "low", "lumber", "lunch", "lunchroom", "lung", "lunge", "lute", "luttuce", "lycra", "lynx", "lyocell", "lyre", "lyric", "macaroni", "machine", "macrame", "magazine", "magic", "magician", "maid", "mail", "mailbox", "mailman", "makeup", "malaysia", "male", "mall", "mallet", "man", "manager", "mandolin", "manicure", "manx", "map", "maple", "maraca", "marble", "march", "margaret", "margin", "maria", "marimba", "mark", "market", "married", "mary", "mascara", "mask", "mass", "match", "math", "mattock", "may", "mayonnaise", "meal", "measure", "meat", "mechanic", "medicine", "meeting", "melody", "memory", "men", "menu", "mercury", "message", "metal", "meteorology", "meter", "methane", "mexican", "mexico", "mice", "michael", "michelle", "microwave", "middle", "mile", "milk", "milkshake", "millennium", "millimeter", "millisecond", "mimosa", "mind", "mine", "mini-skirt", "minibus", "minister", "mint", "minute", "mirror", "missile", "mist", "mistake", "mitten", "moat", "modem", "mole", "mom", "monday", "money", "monkey", "month", "moon", "morning", "morocco", "mosque", "mosquito", "mother", "mother-in-law", "motion", "motorboat", "motorcycle", "mountain", "mouse", "moustache", "mouth", "move", "multi-hop", "multimedia", "muscle", "museum", "music", "musician", "mustard", "myanmar", "nail", "name", "nancy", "napkin", "narcissus", "nation", "neck", "need", "needle", "neon", "nepal", "nephew", "nerve", "nest", "net", "network", "news", "newsprint", "newsstand", "nic", "nickel", "niece", "nigeria", "night", "nitrogen", "node", "noise", "noodle", "north", "north america", "north korea", "norwegian", "nose", "note", "notebook", "notify", "novel", "november", "number", "numeric", "nurse", "nut", "nylon", "oak", "oatmeal", "objective", "oboe", "observation", "occupation", "ocean", "ocelot", "octagon", "octave", "october", "octopus", "odometer", "offence", "offer", "office", "oil", "okra", "olive", "onion", "open", "opera", "operation", "ophthalmologist", "opinion", "option", "orange", "orchestra", "orchid", "order", "organ", "organisation", "organization", "ornament", "ostrich", "otter", "ounce", "output", "outrigger", "oval", "oven", "overcoat", "owl", "owner", "ox", "oxygen", "oyster", "package", "packet", "page", "pail", "pain", "paint", "pair", "pajama", "pakistan", "palm", "pamphlet", "pan", "pancake", "pancreas", "panda", "pansy", "panther", "panties", "pantry", "pants", "panty", "pantyhose", "paper", "paperback", "parade", "parallelogram", "parcel", "parent", "parentheses", "park", "parrot", "parsnip", "part", "particle", "partner", "partridge", "party", "passbook", "passenger", "passive", "pasta", "paste", "pastor", "pastry", "patch", "path", "patient", "patio", "patricia", "paul", "payment", "pea", "peace", "peak", "peanut", "pear", "pedestrian", "pediatrician", "peen", "peer-to-peer", "pelican", "pen", "penalty", "pencil", "pendulum", "pentagon", "peony", "pepper", "perch", "perfume", "period", "periodical", "peripheral", "permission", "persian", "person", "peru", "pest", "pet", "pharmacist", "pheasant", "philippines", "philosophy", "phone", "physician", "piano", "piccolo", "pickle", "picture", "pie", "pig", "pigeon", "pike", "pillow", "pilot", "pimple", "pin", "pine", "ping", "pink", "pint", "pipe", "pisces", "pizza", "place", "plain", "plane", "planet", "plant", "plantation", "plaster", "plasterboard", "plastic", "plate", "platinum", "play", "playground", "playroom", "pleasure", "plier", "plot", "plough", "plow", "plywood", "pocket", "poet", "point", "poison", "poland", "police", "policeman", "polish", "politician", "pollution", "polo", "polyester", "pond", "popcorn", "poppy", "population", "porch", "porcupine", "port", "porter", "position", "possibility", "postage", "postbox", "pot", "potato", "poultry", "pound", "powder", "power", "precipitation", "preface", "prepared", "pressure", "price", "priest", "print", "printer", "prison", "probation", "process", "processing", "produce", "product", "production", "professor", "profit", "promotion", "propane", "property", "prose", "prosecution", "protest", "protocol", "pruner", "psychiatrist", "psychology", "ptarmigan", "puffin", "pull", "puma", "pump", "pumpkin", "punch", "punishment", "puppy", "purchase", "purple", "purpose", "push", "pvc", "pyjama", "pyramid", "quail", "quality", "quart", "quarter", "quartz", "queen", "question", "quicksand", "quiet", "quill", "quilt", "quince", "quit", "quiver", "quotation", "rabbi", "rabbit", "racing", "radar", "radiator", "radio", "radish", "rainstorm", "rake", "ramie", "random", "range", "rat", "rate", "raven", "ravioli", "ray", "rayon", "reaction", "reading", "reason", "receipt", "recess", "record", "recorder", "rectangle", "red", "reduction", "refrigerator", "refund", "regret", "reindeer", "relation", "relative", "religion", "relish", "reminder", "repair", "replace", "report", "representative", "request", "resolution", "respect", "responsibility", "rest", "restaurant", "result", "retailer", "revolve", "revolver", "reward", "rhinoceros", "rhythm", "rice", "richard", "riddle", "rifle", "ring", "rise", "risk", "river", "riverbed", "road", "roadway", "roast", "robert", "robin", "rock", "rocket", "rod", "roll", "romania", "romanian", "ronald", "roof", "room", "rooster", "root", "rose", "rotate", "route", "router", "rowboat", "rub", "rubber", "rugby", "rule", "run", "russia", "russian", "rutabaga", "ruth", "sack", "sagittarius", "sail", "sailboat", "sailor", "salad", "salary", "sale", "salesman", "salmon", "salt", "sampan", "samurai", "sand", "sandra", "sandwich", "santa", "sarah", "sardine", "satin", "saturday", "sauce", "saudi arabia", "sausage", "save", "saw", "saxophone", "scale", "scallion", "scanner", "scarecrow", "scarf", "scene", "scent", "schedule", "school", "science", "scissors", "scooter", "scorpio", "scorpion", "scraper", "screen", "screw", "screwdriver", "sea", "seagull", "seal", "seaplane", "search", "seashore", "season", "seat", "second", "secretary", "secure", "security", "seed", "seeder", "segment", "select", "selection", "self", "semicircle", "semicolon", "sense", "sentence", "separated", "september", "servant", "server", "session", "sex", "shade", "shadow", "shake", "shallot", "shame", "shampoo", "shape", "share", "shark", "sharon", "shears", "sheep", "sheet", "shelf", "shell", "shield", "shingle", "ship", "shirt", "shock", "shoe", "shoemaker", "shop", "shorts", "shoulder", "shovel", "show", "shrimp", "shrine", "siamese", "siberian", "side", "sideboard", "sidecar", "sidewalk", "sign", "signature", "sister", "sister-in-law", "size", "skate", "skiing", "skill", "skin", "skirt", "sky", "slash", "slave", "sled", "sleep", "sleet", "slice", "slime", "slip", "slipper", "slope", "smash", "smell", "smile", "smoke", "snail", "snake", "sneeze", "snow", "snowboarding", "snowflake", "snowman", "snowplow", "snowstorm", "soap", "soccer", "society", "sociology", "sock", "soda", "sofa", "softball", "softdrink", "software", "soil", "soldier", "son", "song", "soprano", "sort", "sound", "soup", "sousaphone", "south africa", "south america", "south korea", "soy", "soybean", "space", "spade", "spaghetti", "spain", "spandex", "spark", "sparrow", "spear", "specialist", "speedboat", "sphere", "sphynx", "spider", "spike", "spinach", "spleen", "sponge", "spoon", "spot", "spring", "sprout",],
-    },
-
-    "place": {
-        "neutral": ["Cinema", "Park", "Street", "Bridge",],
-        "happy": ["San Francisco", "Bali", "Hawaii", "Comedy Club", "Pub"],
-        "angry": [],
-        "surprised": ["Theme Park"],
-        "disgusted": ["Sewer", ""],
-        "sad": ["Supermarket",]
-    },
-
-    "pronoun": ["He", "She", "They"],
-
-    "verb": {
-
-        "neutral": ["accept", "agree", "allow", "applaud", "appreciate", "approve", "arrange", "arrive", "ask", "attach",],
-
-        "happy": ["admire", "amuse", "arrest", "attract", "bake",],
-
-        "angry": ["alert", "annoy", "argue", "attack",],
-
-        "surprised": ["admit",],
-
-        "sad": ["advise", "apologise", "attempt", "attend", "avoid",],
-        // "the rest": ["add", "afford", "analyse", "announce", "answer", "appear", "balance", "ban", "bang", "bare", "bat", "bathe", "battle", "beam", "beg", "behave", "belong", "bleach", "bless", "blind", "blink", "blot", "blush", "boast", "boil", "bolt", "bomb", "book", "bore", "borrow", "bounce", "bow", "box", "brake", "branch", "breathe", "bruise", "brush", "bubble", "bump", "burn", "bury", "buzz", "calculate", "call", "camp", "care", "carry", "carve", "cause", "challenge", "change", "charge", "chase", "cheat", "check", "cheer", "chew", "choke", "chop", "claim", "clap", "clean", "clear", "clip", "close", "coach", "coil", "collect", "colour", "comb", "command", "communicate", "compare", "compete", "complain", "complete", "concentrate", "concern", "confess", "confuse", "connect", "consider", "consist", "contain", "continue", "copy", "correct", "cough", "count", "cover", "crack", "crash", "crawl", "cross", "crush", "cry", "cure", "curl", "curve", "cycle", "dam", "damage", "dance", "dare", "decay", "deceive", "decide", "decorate", "delay", "delight", "deliver", "depend", "describe", "desert", "deserve", "destroy", "detect", "develop", "disagree", "disappear", "disapprove", "disarm", "discover", "dislike", "divide", "double", "doubt", "drag", "drain", "dream", "dress", "drip", "drop", "drown", "drum", "dry", "dust", "earn", "educate", "embarrass", "employ", "empty", "encourage", "end", "enjoy", "enter", "entertain", "escape", "examine", "excite", "excuse", "exercise", "exist", "expand", "expect", "explain", "explode", "extend", "face", "fade", "fail", "fancy", "fasten", "fax", "fear", "fence", "fetch", "file", "fill", "film", "fire", "fit", "fix", "flap", "flash", "float", "flood", "flow", "flower", "fold", "follow", "fool", "force", "form", "found", "frame", "frighten", "fry", "gather", "gaze", "glow", "glue", "grab", "grate", "grease", "greet", "grin", "grip", "groan", "guarantee", "guard", "guess", "guide", "hammer", "hand", "handle", "hang", "happen", "harass", "harm", "hate", "haunt", "head", "heal", "heap", "heat", "help", "hook", "hop", "hope", "hover", "hug", "hum", "hunt", "hurry", "identify", "ignore", "imagine", "impress", "improve", "include", "increase", "influence", "inform", "inject", "injure", "instruct", "intend", "interest", "interfere", "interrupt", "introduce", "invent", "invite", "irritate", "itch", "jail", "jam", "jog", "join", "joke", "judge", "juggle", "jump", "kick", "kill", "kiss", "kneel", "knit", "knock", "knot", "label", "land", "last", "laugh", "launch", "learn", "level", "license", "lick", "lie", "lighten", "like", "list", "listen", "live", "load", "lock", "long", "look", "love", "man", "manage", "march", "mark", "marry", "match", "mate", "matter", "measure", "meddle", "melt", "memorise", "mend", "mess up", "milk", "mine", "miss", "mix", "moan", "moor", "mourn", "move", "muddle", "mug", "multiply", "murder", "nail", "name", "need", "nest", "nod", "note", "notice", "number", "obey", "object", "observe", "obtain", "occur", "offend", "offer", "open", "order", "overflow", "owe", "own", "pack", "paddle", "paint", "park", "part", "pass", "paste", "pat", "pause", "peck", "pedal", "peel", "peep", "perform", "permit", "phone", "pick", "pinch", "pine", "place", "plan", "plant", "play", "please", "plug", "point", "poke", "polish", "pop", "possess", "post", "pour", "practise", "pray", "preach", "precede", "prefer", "prepare", "present", "preserve", "press", "pretend", "prevent", "prick", "print", "produce", "program", "promise", "protect", "provide", "pull", "pump", "punch", "puncture", "punish", "push", "question", "queue", "race", "radiate", "rain", "raise", "reach", "realise", "receive", "recognise", "record", "reduce", "reflect", "refuse", "regret", "reign", "reject", "rejoice", "relax", "release", "rely", "remain", "remember", "remind", "remove", "repair", "repeat", "replace", "reply", "report", "reproduce", "request", "rescue", "retire", "return", "rhyme", "rinse", "risk", "rob", "rock", "roll", "rot", "rub", "ruin", "rule", "rush", "sack", "sail", "satisfy", "save", "saw", "scare", "scatter", "scold", "scorch", "scrape", "scratch", "scream", "screw", "scribble", "scrub", "seal", "search", "separate", "serve", "settle", "shade", "share", "shave", "shelter", "shiver", "shock", "shop", "shrug", "sigh", "sign", "signal", "sin", "sip", "ski", "skip", "slap", "slip", "slow", "smash", "smell", "smile", "smoke", "snatch", "sneeze", "sniff", "snore", "snow", "soak", "soothe", "sound", "spare", "spark", "sparkle", "spell", "spill", "spoil", "spot", "spray", "sprout", "squash", "squeak", "squeal", "squeeze", "stain", "stamp", "stare", "start", "stay", "steer", "step", "stir", "stitch", "stop", "store", "strap", "strengthen", "stretch", "strip", "stroke", "stuff", "subtract", "succeed", "suck", "suffer", "suggest", "suit", "supply", "support", "suppose", "surprise", "surround", "suspect", "suspend", "switch", "talk", "tame", "tap", "taste", "tease", "telephone", "tempt", "terrify", "test", "thank", "thaw", "tick", "tickle", "tie", "time", "tip", "tire", "touch", "tour", "tow", "trace", "trade", "train", "transport", "trap", "travel", "treat", "tremble", "trick", "trip", "trot", "trouble", "trust", "try", "tug", "tumble", "turn", "twist", "type", "undress", "unfasten", "unite", "unlock", "unpack", "untidy", "use", "vanish", "visit", "wail", "wait", "walk", "wander", "want", "warm", "warn", "wash", "waste", "watch", "water", "wave", "weigh", "welcome", "whine", "whip", "whirl", "whisper", "whistle", "wink", "wipe", "wish", "wobble", "wonder", "work", "worry", "wrap", "wreck", "wrestle", "wriggle", "x-ray", "yawn", "yell", "zip", "zoom"]
-    },
 
 
 }

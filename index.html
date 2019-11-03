@@ -9,8 +9,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
   <script defer src="face-api.min.js"></script>
   <script defer src="words.js"></script>
-  <script defer src="sketch.js"></script>
-  <script defer src="script.js"></script>
+  
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css?family=Cutive+Mono|Special+Elite&display=swap" rel="stylesheet"> </head>
 <body>
@@ -20,12 +19,17 @@
 
       <div class="video">
         <video id="video" width="400" height="225" autoplay muted></video>
+        <h2 class="face-detected" id="face-detected"></h2>
       </div>
 
-     
+      <section class="warning" id="warning">
+      </section>
 
       <section class="story-container">
-        <div class="story" id="story">
+        <img src='./assets/rsz_paper.png' class="paper-img" alt="">
+        <div class="story" id="story"></div>
+
+          <h1 class="story-finish">Fin.</h1>
       </section>
 
       </div>
@@ -33,5 +37,7 @@
     </section>
 </main>
 
+<script defer src="sketch.js"></script>
+  <script defer src="script.js"></script>
 </body>
 </html>

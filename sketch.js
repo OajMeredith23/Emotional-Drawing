@@ -3,73 +3,63 @@ const storyStructure = ['pronoun', 'verb', 'at', 'the', 'noun', 'in', 'pronoun',
 const wordTypes = ['verb', 'noun', 'adjective', 'place']
 
 const storyContainer = document.querySelector('#story')
+const warningContainer = document.querySelector('#warning')
+const faceDetectedContainer = document.querySelector('#face-detected')
 
+let storyLength = 0
+for (let key in words) {
+    storyLength++
+}
 
-let i = 0;
-function createStory(expression) {
+const storyFinished = `<h1 class="story-finish">Fin.</h1>`
 
-    if (i <= storyStructure.length - 1) {
+let i = 1;
+function createStory(expression, noDetectionCount) {
+
+    if (noDetectionCount > 5 && noDetectionCount <= 10 && storyContainer.hasChildNodes()) {
+        warningContainer.innerHTML = `<h1>Resetting story in...${10 - noDetectionCount} seconds</h1>`
+    } else {
+        warningContainer.innerHTML = ``
+    }
+
+    if (noDetectionCount > 10) {
+        storyContainer.innerHTML = ''
+        document.querySelector('.story-finish').style.opacity = "0"
+        i = 1;
+    }
+
+    if (expression === null) {
+        faceDetectedContainer.innerHTML = "No face detected"
+        return
+    } else {
+        faceDetectedContainer.innerHTML = "Face detected"
+    }
+
+    if (i <= storyLength) {
+
         let newWord = ''
 
-        // if the wordTypes array includes the type of words we're currently on then...
-        if (wordTypes.includes(storyStructure[i])) {
-
-            let len = words[storyStructure[i]][expression].length;
-            // get a random word from the words object within: 
-            // 1. the type of word we want (Adjective, noun...)
-            // 2. matches the expression the user has just shown
-            newWord = words[storyStructure[i]][expression][Math.floor(Math.random() * len)];
-        } else if (storyStructure[i] === "pronoun") {
-            newWord = "She" // This will (hopefully) be the users gender in the future
+        if (words[i]['pronoun']) {
+            newWord = words[i]['they']
+        } else if (words[i]['fill']) {
+            newWord = words[i]['word']
         } else {
-            newWord = storyStructure[i]
+            let randomIndex = Math.floor(Math.random() * words[i][expression].length)
+            newWord = words[i][expression][randomIndex]
         }
 
         storyContainer.innerHTML += `${newWord} `
+
+        if (i === storyLength) {
+            document.querySelector('.story-finish').style.opacity = "1"
+        }
+
         i++
     }
-
 }
 
-    // if (words[storyStructure[i]][expression] === undefined) {
-    //     console.log("err")
-    //     newWord = storyStructure[i]
-    //     storyContainer.innerHTML += `${newWord} `
-    // } else {
-    //     let len = words[storyStructure[i]][expression].length;
-    //     newWord = words[storyStructure[i]][expression][Math.floor(Math.random() * len)];
-    // }
+// createStory('happy')
 
 
 
 
-
-
-
-    // i++
-    // console.log(words[storyStructure[i]][expression][Math.floor(Math.random() * len)])
-    // for (let key in words) {
-
-    //     //     newWord = words[storyStructure[10]][expression][Math.floor(Math.random() * len)];
-
-    //     //     // console.log(newWord)
-    //     //     // if (key === storyStructure[i]) {
-    //     //     // }
-    // }
-
-
-    // for (let key in words) {
-    //     // console.log(key)
-    //     if (key === expression) {
-    //         console.log(words.adjectives.happy)
-    //         newWord = words.adjectives[key][Math.floor(Math.random() * words.adjectives[key].length)]
-    //         // newWord = storyStructure[i]
-    //         console.log(newWord)
-    //     }
-    // // }
-
-    // storyContainer.innerHTML += `${newWord} `
-    // 4++
-
-    // }
-// }

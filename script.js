@@ -20,7 +20,7 @@ function startVideo() {
 }
 
 const videoSection = document.querySelector('.video')
-
+let noDetectionCount = 0;
 video.addEventListener('play', () => {
   let expressions, expression;
 
@@ -43,15 +43,19 @@ video.addEventListener('play', () => {
 
 
     if (detections[0] === undefined) {
+      noDetectionCount += 1
+      console.log('no expression' + noDetectionCount)
+      // console.log('no expression')
       expression = null
     } else {
+      noDetectionCount = 0
       expressions = detections[0].expressions
       expression = Object.keys(expressions).reduce((a, b) => expressions[a] > expressions[b] ? a : b), neutral = expressions.neutral;
     }
 
-    if (prevExpression !== expression) {
-      createStory(expression)
-    }
+    // if (prevExpression !== expression) {
+    createStory(expression, noDetectionCount)
+    // }
 
   }, 1000)
 
