@@ -1,87 +1,90 @@
 
+const storyStructure = ['pronoun', 'verb', 'at', 'the', 'noun', 'in', 'pronoun', 'noun', 'and', 'verb', 'adjective', '.', 'pronoun', 'verb', 'to', 'the', 'noun', 'and', 'verb', 'on', 'her', 'adjective', 'noun', '.', 'pronoun', 'had', 'adverb', 'adjective', 'adjective', 'place', 'with', 'its', 'adjective', 'adjective', 'noun', '.', 'It', 'was', 'a', 'place', 'that', 'verb', 'pronoun', 'noun', 'to', 'feel', 'adjective', '.']
+const wordTypes = ['verb', 'noun', 'adjective', 'place']
 
-let inc = 0.1;
-let scl = 10;
-let cols, rows;
-let zoff = 0;
-let particles = [];
-let flowfield;
-let fr;
-let disturbance = 0.5;
-let magnitude = 0.5;
-let c = 0;
-let angle;
-let disturbanceSlider, magSlider;
-neutral = 0;
+const storyContainer = document.querySelector('#story')
+const warningContainer = document.querySelector('#warning')
+const faceDetectedContainer = document.querySelector('#face-detected')
 
-let canvasParent = document.getElementById('p5Sketch'),
-    canvasWidth = canvasParent.offsetWidth,
-    canvasHeight = canvasParent.offsetHeight;
-function setup() {
-    var canvas = createCanvas(canvasWidth, canvasHeight);
-    canvas.parent('p5Sketch');
-    colorMode(HSB, 255);
-    cols = floor(width / scl);
-    rows = floor(height / scl);
-
-    flowfield = new Array(cols * rows);
-
-
-    for (var i = 0; i < 300; i++) {
-        particles[i] = new Particle();
-    }
-    background(51);
-
+let storyLength = 0
+for (let key in words) {
+    storyLength++
 }
 
+const storyFinished = `<h1 class="story-finish">Fin.</h1>`
 
-function draw() {
-    // background(0, map(neutral, 0, 1, 0, 155));
-    background(0, 10);
+let i = 1;
+function createStory(expression, gender, age, noDetectionCount) {
 
-    var yoff = 0;
-    for (var y = 0; y < rows; y++) {
-        var xoff = 0;
-        for (var x = 0; x < cols; x++) {
-            var index = x + y * cols;
+    if (noDetectionCount > 5 && noDetectionCount <= 10 && storyContainer.hasChildNodes()) {
+        warningContainer.innerHTML = `<h1>Resetting story in...${10 - noDetectionCount} seconds</h1>`
+    } else {
+        warningContainer.innerHTML = ``
+    }
 
-            if (emotion === 'happy') {
-                angle = sin(noise(xoff, yoff, zoff)) * TWO_PI * 0.5;
-            } else if (emotion === 'surprised') {
-                angle = noise(xoff, yoff, zoff) * TWO_PI
-            } else if (emotion === 'neutral') {
-                angle = sin(xoff, yoff, zoff) * 0.5;
-            } else {
-                angle = sin(xoff, yoff, zoff) * 0.1;
-            }
+    if (noDetectionCount > 10) {
+        storyContainer.innerHTML = ''
+        i = 1;
+    }
 
-            var v = p5.Vector.fromAngle(angle);
-            v.setMag(1);
-            flowfield[index] = v;
-            stroke(0, 50);
-            // stroke(255, 125);
-            // push();
-            // translate(x * scl, y * scl);
-            // rotate(v.heading());
-            // strokeWeight(1);
-            // line(0, 0, scl, 0);
-            // pop();
-            // if (neutral > 0) {
-            //     c = map(neutral, 0, 1, 255, 0)
-            // }
+    if (expression === null) {
+        faceDetectedContainer.innerHTML = "<h2>No face detected</h2> </br> <p>Make sure your face is in view of the camera</p>"
+        // return
+    } else {
+        faceDetectedContainer.innerHTML = "Face detected – Use your expressions to write"
+    }
 
-            xoff += inc;
+    if (i <= storyLength) {
+
+        let newWord = ''
+
+        if (words[i]['pronoun']) {
+
+            newWord = words[i][gender]
+        } else if (words[i]['fill']) {
+
+            newWord = words[i]['word']
+
+        } else if (words[i]['age']) {
+            newWord = `${age} years old, `
+        } else {
+            let randomIndex = Math.floor(Math.random() * words[i][expression].length)
+            newWord = words[i][expression][randomIndex]
         }
-        yoff += inc;
 
-        zoff += 0.0003;
+        storyContainer.innerHTML += `${newWord} `
+
+        if (i === storyLength) {
+            document.querySelector('.story-finish').style.opacity = "1"
+
+            let wait = 0
+            const resetDelay = 12;
+            const reset = setInterval(() => {
+
+
+                if (wait > 2) {
+                    warningContainer.innerHTML = `<h1>Resetting story in...${resetDelay - wait} seconds</h1>`
+                }
+
+                console.log(wait)
+                if (wait === resetDelay) {
+                    storyContainer.innerHTML = ''
+                    warningContainer.innerHTML = ``
+                    document.querySelector('.story-finish').style.opacity = "0"
+                    i = 1;
+                    clearInterval(reset)
+                }
+
+                wait++
+            }, 1000)
+        }
+
+        i++
     }
-
-    for (var i = 0; i < particles.length; i++) {
-        particles[i].follow(flowfield);
-        particles[i].update();
-        particles[i].edges();
-        particles[i].show(emotion);
-    }
-
 }
+
+// createStory('happy')
+
+
+
+
