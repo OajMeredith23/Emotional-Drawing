@@ -37,7 +37,7 @@ video.addEventListener('play', () => {
     let prevExpression = expression
 
     const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions().withAgeAndGender()
-    console.log(Math.floor(detections[0].age))
+    // console.log(Math.floor(detections[0].age))
     const resizedDetections = faceapi.resizeResults(detections, displaySize)
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
 
@@ -53,7 +53,7 @@ video.addEventListener('play', () => {
       expression = null
     } else {
       gender = detections[0].gender
-      // age = Math.floor(detections[0].age)
+      age = Math.floor(detections[0].age)
       noDetectionCount = 0
       expressions = detections[0].expressions
       expression = Object.keys(expressions).reduce((a, b) => expressions[a] > expressions[b] ? a : b), neutral = expressions.neutral;
