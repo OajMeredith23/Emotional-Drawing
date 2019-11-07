@@ -24,15 +24,14 @@ function createStory(expression, noDetectionCount) {
 
     if (noDetectionCount > 10) {
         storyContainer.innerHTML = ''
-        document.querySelector('.story-finish').style.opacity = "0"
         i = 1;
     }
 
     if (expression === null) {
-        faceDetectedContainer.innerHTML = "No face detected"
-        return
+        faceDetectedContainer.innerHTML = "<h2>No face detected</h2> </br> <p>Make sure your face is in view of the camera</p>"
+        // return
     } else {
-        faceDetectedContainer.innerHTML = "Face detected"
+        faceDetectedContainer.innerHTML = "Face detected – Use your expressions to write"
     }
 
     if (i <= storyLength) {
@@ -40,9 +39,12 @@ function createStory(expression, noDetectionCount) {
         let newWord = ''
 
         if (words[i]['pronoun']) {
+
             newWord = words[i]['they']
         } else if (words[i]['fill']) {
+
             newWord = words[i]['word']
+
         } else {
             let randomIndex = Math.floor(Math.random() * words[i][expression].length)
             newWord = words[i][expression][randomIndex]
@@ -52,6 +54,27 @@ function createStory(expression, noDetectionCount) {
 
         if (i === storyLength) {
             document.querySelector('.story-finish').style.opacity = "1"
+
+            let wait = 0
+            const resetDelay = 12;
+            const reset = setInterval(() => {
+
+
+                if (wait > 2) {
+                    warningContainer.innerHTML = `<h1>Resetting story in...${resetDelay - wait} seconds</h1>`
+                }
+
+                console.log(wait)
+                if (wait === resetDelay) {
+                    storyContainer.innerHTML = ''
+                    warningContainer.innerHTML = ``
+                    document.querySelector('.story-finish').style.opacity = "0"
+                    i = 1;
+                    clearInterval(reset)
+                }
+
+                wait++
+            }, 1000)
         }
 
         i++

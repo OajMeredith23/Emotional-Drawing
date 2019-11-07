@@ -31,7 +31,7 @@ const words = {
     },
     /* Noun */ 5: {
         "neutral": ['advertisement', 'tabloid'],
-        "happy": ['bagel', 'rabbit'],
+        "happy": ['bagel', 'rabbit', 'banana', 'guinea pig'],
         "angry": ['cabbage'],
         "sad": ['koala'],
         "disgusted": ['grub'],
@@ -156,7 +156,7 @@ const words = {
         "surprised": ['unceasingly']
     },
     /* Verb */24: {
-        "neutral": ['been ok with', 'unbiased about'],
+        "neutral": ['been ok with', 'been unbiased about'],
         "happy": ['adored', 'cherished'],
         "angry": ['felt engulfed by'],
         "sad": ['dismissed'],
