@@ -14,7 +14,7 @@ for (let key in words) {
 const storyFinished = `<h1 class="story-finish">Fin.</h1>`
 
 let i = 1;
-function createStory(expression, noDetectionCount) {
+function createStory(expression, gender, age, noDetectionCount) {
 
     if (noDetectionCount > 5 && noDetectionCount <= 10 && storyContainer.hasChildNodes()) {
         warningContainer.innerHTML = `<h1>Resetting story in...${10 - noDetectionCount} seconds</h1>`
@@ -40,11 +40,13 @@ function createStory(expression, noDetectionCount) {
 
         if (words[i]['pronoun']) {
 
-            newWord = words[i]['they']
+            newWord = words[i][gender]
         } else if (words[i]['fill']) {
 
             newWord = words[i]['word']
 
+        } else if (words[i]['age']) {
+            newWord = `${age} years old, `
         } else {
             let randomIndex = Math.floor(Math.random() * words[i][expression].length)
             newWord = words[i][expression][randomIndex]

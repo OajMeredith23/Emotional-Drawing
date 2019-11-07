@@ -5,9 +5,9 @@
 const words = {
     /* Pronoun */1: {
         "pronoun": true,
-        "she": ["She"],
-        "he": ["He"],
-        "they": ["They"],
+        "female": ["She"],
+        "male": ["He"],
+        "undefined": ["They"],
     },
     /* Verb */2: {
         "neutral": ['looked at'],
@@ -43,9 +43,9 @@ const words = {
     },
     /* Pronoun */7: {
         "pronoun": true,
-        "she": ["her"],
-        "he": ["his"],
-        "they": ["their"],
+        "female": ["her"],
+        "male": ["his"],
+        "undefined": ["their"],
     },
     /* Noun to hold something */ 8: {
         "neutral": ['hands'],
@@ -68,13 +68,21 @@ const words = {
         "surprised": ['felt rather flushed. </br>']
     },
     // END OF FIRST SENTENCE
-    /* Pronoun */11: {
-        "pronoun": true,
-        "she": ["She"],
-        "he": ["He"],
-        "they": ["They"],
+    /* fill */ 11: {
+        "fill": true,
+        "word": 'At'
     },
-    /* Verb */12: {
+    /* age */ 12: {
+        "age": true
+        // "word": 'and'
+    },
+    /* Pronoun */13: {
+        "pronoun": true,
+        "female": ["She"],
+        "male": ["He"],
+        "undefined": ["They"],
+    },
+    /* Verb */14: {
         "neutral": ['walked over to', 'felt unconcerned by'],
         "happy": ['dreamt about'],
         "angry": ['protested the'],
@@ -82,11 +90,11 @@ const words = {
         "disgusted": ['felt disturbed by'],
         "surprised": ['explored the']
     },
-    /* fill */ 13: {
+    /* fill */ 15: {
         "fill": true,
         "word": 'the'
     },
-     /*Adjective */ 14: {
+     /*Adjective */ 16: {
         "neutral": ['uninteresting', 'nonaligned'],
         "happy": ['amatory', 'astonishing'],
         "angry": ['egregious', 'bitter', 'distressed'],
@@ -94,7 +102,7 @@ const words = {
         "disgusted": ['feckless', 'troubled', 'dismal'],
         "surprised": ['fecund', 'bewildering', 'confounding']
     },
-     /* Noun */ 15: {
+     /* Noun */ 17: {
         "neutral": ['street'],
         "happy": ['sunlight', 'rainbow'],
         "angry": ['volcano'],
@@ -102,11 +110,11 @@ const words = {
         "disgusted": ['swamp'],
         "surprised": ['socks']
     },
-    /* fill */ 16: {
+    /* fill */ 18: {
         "fill": true,
         "word": 'and'
     },
-     /* Verb */17: {
+     /* Verb */19: {
         "neutral": ['considered'],
         "happy": ['reflected on'],
         "angry": ['snarled at'],
@@ -114,13 +122,13 @@ const words = {
         "disgusted": ['glared at'],
         "surprised": ['reverberated through']
     },
-     /* Pronoun */18: {
+     /* Pronoun */20: {
         "pronoun": true,
-        "she": ["her"],
-        "he": ["his"],
-        "they": ["their"],
+        "female": ["her"],
+        "male": ["his"],
+        "undefined": ["their"],
     },
-    /*Adjective */ 19: {
+    /*Adjective */ 21: {
         "neutral": ['equanimous'],
         "happy": ['cerulean'],
         "angry": ['hubristic'],
@@ -128,7 +136,7 @@ const words = {
         "disgusted": ['feckless'],
         "surprised": ['efficacious']
     },
-     /* Noun */ 20: {
+     /* Noun */ 22: {
         "neutral": ['surroundings.'],
         "happy": ['amusement.'],
         "angry": ['aftermath.'],
@@ -137,17 +145,17 @@ const words = {
         "surprised": ['goose.']
     },
      // END OF SECOND SENTENCE
-    /* Pronoun */21: {
+    /* Pronoun */23: {
         "pronoun": true,
-        "she": ["She"],
-        "he": ["He"],
-        "they": ["They"],
+        "female": ["She"],
+        "male": ["He"],
+        "undefined": ["They"],
     },
-    /* fill */ 22: {
+    /* fill */ 24: {
         "fill": true,
         "word": 'had'
     },
-    /* Adverb */  23: {
+    /* Adverb */  25: {
         "neutral": ['always'],
         "happy": ['perpetually'],
         "angry": ['without exception'],
@@ -155,7 +163,7 @@ const words = {
         "disgusted": ['invariably'],
         "surprised": ['unceasingly']
     },
-    /* Verb */24: {
+    /* Verb */26: {
         "neutral": ['been ok with', 'been unbiased about'],
         "happy": ['adored', 'cherished'],
         "angry": ['felt engulfed by'],
@@ -163,7 +171,7 @@ const words = {
         "disgusted": ['felt revolted by'],
         "surprised": ['weaved through', 'idolized']
     },
-     /*Adjective */ 25: {
+     /*Adjective */ 27: {
         "neutral": ['inactive'],
         "happy": ['risible'],
         "angry": ['pernicious'],
@@ -171,7 +179,7 @@ const words = {
         "disgusted": ['obtuse'],
         "surprised": ['pervasive']
     },
-    /* Place */ 26: {
+    /* Place */ 28: {
 
         "neutral": ['London'],
         "happy": ['San Francisco'],
@@ -180,11 +188,11 @@ const words = {
         "disgusted": ['obtuse'],
         "surprised": ['mountains']
     },
-    /* fill */ 27: {
+    /* fill */ 29: {
         "fill": true,
         "word": 'with its'
     },
-    /*Adjective */ 28: {
+    /*Adjective */ 30: {
         "neutral": ['average,'],
         "happy": ['risible,'],
         "angry": ['strident,'],
@@ -192,7 +200,7 @@ const words = {
         "disgusted": ['withering,'],
         "surprised": ['verdant,']
     },
-    /*Adjective */ 29: {
+    /*Adjective */ 31: {
         "neutral": ['quite ok'],
         "happy": ['arcadian'],
         "angry": ['baleful'],
@@ -200,7 +208,7 @@ const words = {
         "disgusted": ['dilatory'],
         "surprised": ['adriot']
     },
-     /* Noun */ 30: {
+     /* Noun */ 32: {
         "neutral": ['corners.'],
         "happy": ['jewel.'],
         "angry": ['oil.'],
@@ -209,11 +217,11 @@ const words = {
         "surprised": ['legs.']
     },
     /* END OF THIRD SENTENCE /*
-    /* fill */ 31: {
+    /* fill */ 33: {
         "fill": true,
         "word": 'It was a place that'
     },
-    /* Verb */32: {
+    /* Verb */34: {
         "neutral": ['resolved'],
         "happy": ['encouraged'],
         "angry": ['wrecked'],
@@ -221,13 +229,13 @@ const words = {
         "disgusted": ['transfigured'],
         "surprised": ['yanked']
     },
-    /* Pronoun */33: {
+    /* Pronoun */35: {
         "pronoun": true,
-        "she": ["her"],
-        "he": ["his"],
-        "they": ["their"],
+        "female": ["her"],
+        "male": ["his"],
+        "undefined": ["their"],
     },
-     /* Noun */ 34: {
+     /* Noun */ 36: {
         "neutral": ['tendency'],
         "happy": ['proclivity'],
         "angry": ['slant'],
@@ -235,11 +243,11 @@ const words = {
         "disgusted": ['weakness'],
         "surprised": ['readiness']
     },
-    /* fill */ 35: {
+    /* fill */ 37: {
         "fill": true,
         "word": 'to feel'
     },
-    /* adjective */36: {
+    /* adjective */38: {
         "neutral": ['neutral.'],
         "happy": ['fulsome.'],
         "angry": ['intransigent.'],

@@ -7,7 +7,8 @@ Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
   faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-  faceapi.nets.faceExpressionNet.loadFromUri('/models')
+  faceapi.nets.faceExpressionNet.loadFromUri('/models'),
+  faceapi.nets.ageGenderNet.loadFromUri('/models')
 ]).then(startVideo)
 
 function startVideo() {
@@ -21,6 +22,8 @@ function startVideo() {
 
 const videoSection = document.querySelector('.video')
 let noDetectionCount = 0;
+let gender = null
+let age = null
 video.addEventListener('play', () => {
   let expressions, expression;
 
@@ -33,7 +36,8 @@ video.addEventListener('play', () => {
   setInterval(async () => {
     let prevExpression = expression
 
-    const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+    const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions().withAgeAndGender()
+    console.log(Math.floor(detections[0].age))
     const resizedDetections = faceapi.resizeResults(detections, displaySize)
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
 
@@ -48,13 +52,15 @@ video.addEventListener('play', () => {
       // console.log('no expression')
       expression = null
     } else {
+      gender = detections[0].gender
+      // age = Math.floor(detections[0].age)
       noDetectionCount = 0
       expressions = detections[0].expressions
       expression = Object.keys(expressions).reduce((a, b) => expressions[a] > expressions[b] ? a : b), neutral = expressions.neutral;
     }
 
     // if (prevExpression !== expression) {
-    createStory(expression, noDetectionCount)
+    createStory(expression, gender, age, noDetectionCount)
     // }
 
   }, 1000)
